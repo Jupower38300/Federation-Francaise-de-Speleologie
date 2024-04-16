@@ -12,3 +12,5 @@ Route::get('/formulaire', function () {
 })->name('formulaire');
 
 Route::post('/formulaire', [FormController::class, 'store'])->name('form.store');
+
+Route::get('/moderation', [FormController::class, 'showFormSubmissions'])->name('form-submissions');

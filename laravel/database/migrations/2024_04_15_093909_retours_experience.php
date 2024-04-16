@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('form_submissions', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('titre');
             $table->string('prenom');
+            $table->text('site_name');
+            $table->string('activity');
             $table->text('message');
             $table->timestamp('submission_date')->useCurrent();
             $table->timestamps();

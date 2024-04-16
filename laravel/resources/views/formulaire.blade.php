@@ -4,23 +4,32 @@
 
 @section("content")
         <div class="content_form">
-        <form action="{{ route('form.store') }}" method="POST">
-    @csrf
-    <h1>Retour d'expérience</h1>
-    <label for="fname"><strong>Prénom:</strong></label>
-    <input name="nom" id="fname" type="text" />
-    <br><br>
-    <label for="lname"><strong>Nom:</strong></label>
-    <input name="prenom" id="lname" type="text" />
-    <br><br>
-    <label for="tel"><strong>Message:</strong></label>
-    <input name="message" id="tel" type="text" />
-    <br><br>
-    <div id="bouton">
-        <button id="resetBtn" type="reset">Réinitialiser</button>
-        <button id="submitBtn" type="submit">Valider</button>
-    </div>
-</form>
+            <div class="moderation">
+                <a href="/moderation">Modération</a>
+            </div>
+                <form action="{{ route('form.store') }}" method="POST">
+                    @csrf
+                    <h1>Retour d'expérience</h1>
+                    <label for="prenom"><strong>Prénom:</strong></label>
+                    <input name="prenom" id="prenom" type="text" />
+                    <br><br>
+                    <label for="titre"><strong>Titre:</strong></label>
+                    <input name="titre" id="titre" type="text" />
+                    <br><br>
+                    <label for="site_name"><strong>Nom du site:</strong></label>
+                    <input name="site_name" id="site_name" type="text" />
+                    <br><br>
+                    <label for="activity"><strong>Activité:</strong></label>
+                    <input name="activity" id="activity" type="text" />
+                    <br><br>
+                    <label for="message"><strong>Message:</strong></label>
+                    <input name="message" id="message" type="text" />
+                    <br><br>
+                    <div id="bouton">
+                        <button id="resetBtn" type="reset">Réinitialiser</button>
+                        <button id="submitBtn" type="submit">Valider</button>
+                    </div>
+                </form>
         </div>
 @endsection
 
@@ -48,6 +57,9 @@
         justify-content:center;
     }
 
+    .moderation {
+        background-color:white;
+    }
     #bouton {
         display:flex;
     }

@@ -11,23 +11,24 @@
     color:black;
     transition: color 0.3s;
 
-}
-a:hover {
-    color: #007818;
+    }
+    a:hover {
+        color: #007818;
 
-}
+    }
 
-#connection {
-    padding: 15px;
-    background-color:#007818;
-    color:white;
-    border-radius:10px;
-    transition: background-color 0.2s;
-}
+    #connection {
+        padding: 15px;
+        background-color:#007818;
+        color:white;
+        border-radius:10px;
+        transition: background-color 0.2s;
+    }
 
-#connection:hover {
-    background-color: #006314;
-}
+    #connection:hover {
+        background-color: #006314;
+    }
+
 </style>
 
 <header style=" display:flex; width:100%; justify-content:space-between;  height:125px; background-color:white; margin-bottom:7em; align-items:center; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);" >
@@ -40,8 +41,9 @@ a:hover {
                     <li style="margin-left: 30px;"><a href="#" id="connection">Se Connecter</a></li>
                 </ul>
             </nav>
-       </div> 
+       </div>
     </header>
+
 <body>
 
     <main>
