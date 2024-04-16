@@ -38,7 +38,7 @@
                 <ul style="  list-style-type: none; margin: 0; padding: 0; display:flex;">
                     <li style="margin-left: 30px;"><a href="{{ route('formulaire') }}">Retour d'expérience</a></li>
                     <li style="margin-left: 30px;"><a href="#">Consultation</a></li>
-                    <li style="margin-left: 30px;"><a href="#" id="connection">Se Connecter</a></li>
+                    <li style="margin-left: 30px;"><a href="login" id="connection">Se Connecter</a></li>
                 </ul>
             </nav>
        </div>
