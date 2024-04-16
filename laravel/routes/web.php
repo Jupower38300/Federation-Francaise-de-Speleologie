@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\FormController;
 
 Route::get('/', function () {
@@ -17,3 +18,8 @@ Route::get('/moderation', [FormController::class, 'showFormSubmissions'])->name(
 
 Route::get('/form-submissions/{id}/edit', [FormController::class, 'editFormSubmission'])->name('form.edit');
 Route::put('/form-submissions/{id}', [FormController::class, 'updateFormSubmission'])->name('form.update');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
