@@ -14,3 +14,6 @@ Route::get('/formulaire', function () {
 Route::post('/formulaire', [FormController::class, 'store'])->name('form.store');
 
 Route::get('/moderation', [FormController::class, 'showFormSubmissions'])->name('form-submissions');
+
+Route::get('/form-submissions/{id}/edit', [FormController::class, 'editFormSubmission'])->name('form.edit');
+Route::put('/form-submissions/{id}', [FormController::class, 'updateFormSubmission'])->name('form.update');

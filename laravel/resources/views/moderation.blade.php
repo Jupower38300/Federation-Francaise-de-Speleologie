@@ -23,7 +23,9 @@
                 <td>{{ $submission->titre }}</td>
                 <td>{{ $submission->activity }}</td>
                 <td>{{ $submission->site_name }}</td>
-                <!-- Add more columns as needed -->
+                <td scope="btn_edit">
+                    <a href="{{ route('form.edit', $submission->id) }}">Modifier</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
@@ -93,7 +95,27 @@
         text-align:center;
     }
 
-    td[scope='col'] {
+    td a{
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        max-width:50%;
+        color:black;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    td a:hover {
+        background-color: #9e87dc;
+        color: white
+    }
+
+    th {
         background-color: rgba(120, 106, 219, 1);
         color: #fff;
     }

@@ -33,4 +33,33 @@ class FormController extends Controller
             $formSubmissions = SubmissionForm::all();
             return view('moderation', compact('formSubmissions'));
         }   
+
+    public function editFormSubmission($id)
+        {
+            $formSubmission = SubmissionForm::findOrFail($id);
+            return view('edit_infos', compact('formSubmission'));
+        }
+
+        public function updateFormSubmission(Request $request, $id)
+{
+    $request->validate([
+        'prenom' => 'required',
+        'titre' => 'required',
+        'site_name' => 'required',
+        'activity' => 'required',
+        'message' => 'required',
+    ]);
+
+    $formSubmission = SubmissionForm::findOrFail($id);
+    $formSubmission->update([
+        'prenom' => $request->input('prenom'),
+        'titre' => $request->input('titre'),
+        'site_name' => $request->input('site_name'),
+        'activity' => $request->input('activity'),
+        'message' => $request->input('message'),
+    ]);
+
+    return redirect()->route('form-submissions')->with('success', 'Form submission updated successfully!');
 }
+
+    }
