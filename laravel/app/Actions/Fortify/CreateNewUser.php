@@ -35,8 +35,6 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'role' => 'user',
-            'rank' => 1, // Set the default rank value
         ]);
     }
 }

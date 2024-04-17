@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('password');
             $table->string('email');
-            $table->integer('rank')->nullable()->default(1);
+            $table->boolean('is_admin')->default(false);
             $table->timestamps();
         });
     }

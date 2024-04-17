@@ -61,18 +61,17 @@
                 <ul style="  list-style-type: none; margin: 0; padding: 0; display:flex;">
                     <li style="margin-left: 30px;"><a href="{{ route('formulaire') }}">Retour d'expérience</a></li>
                     <li style="margin-left: 30px;"><a href="#">Consultation</a></li>
-                    <li style="margin-left: 30px;"><a href="login" id="connection">Se Connecter</a></li>
-                    <li style="margin-left: 20px; position: relative;">
+                    <li style="margin-left: 30px; position: relative;">
                         @if (auth()->user())
-                            <a href="#" class="account-link" style="margin-left: 20px;">{{ auth()->user()->name }}</a>
-                            <div class="logout-dropdown" style="position: absolute; display: none; padding-top:10px;">
+                            <a href="#" class="account-link" style="margin-left: 20px; text-transform:capitalize;">Bienvenue {{ auth()->user()->name }}</a>
+                            <div class="logout-dropdown" style="position: absolute; display: none; padding-top:10px; margin-left:30px;">
                                 <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                     @csrf
                                     <button type="submit" class="logout-button">Déconnexion</button>
                                 </form>
                             </div>
                         @else
-                            <div style="margin-left: 20px;">Bienvenue, Invité</div>
+                            <div><a href="login" id="connection">Espace Modérateur</a></div>
                         @endif
                     </li>
                 </ul>
