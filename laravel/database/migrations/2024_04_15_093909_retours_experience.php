@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('site_name');
             $table->string('activity');
             $table->text('message');
+            $table->boolean('is_published')->default('0');
             $table->timestamp('submission_date')->useCurrent();
             $table->timestamps();
         });

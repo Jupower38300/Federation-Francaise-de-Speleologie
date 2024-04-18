@@ -1,6 +1,7 @@
+
 @extends("layouts.layout")
 
-@section("title", "Page modération")
+@section("title", "Consultation")
 
 @section("content")
 <div class="Texts">
@@ -16,22 +17,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($formSubmissions as $submission)
+            @foreach ($publishedFormSubmissions as $submission)
             <tr>
                 <td>{{ $submission->id }}</td>
                 <td>{{ $submission->submission_date }}</td>
                 <td>{{ $submission->titre }}</td>
                 <td>{{ $submission->activity }}</td>
                 <td>{{ $submission->site_name }}</td>
-                <td scope="btn_edit">
-                    <a href="{{ route('form.edit', $submission->id) }}">Modifier</a>
-                </td>
-                <td scope="btn_edit">
-                <form action="{{ route('form.publish', $submission->id) }}" method="POST">
-                    @csrf
-                    <button type="submit">Publish</button>
-                </form>
-                </td>
+
             </tr>
             @endforeach
         </tbody>

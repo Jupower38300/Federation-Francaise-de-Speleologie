@@ -60,7 +60,7 @@
             <nav style="margin-right: 2em;">
                 <ul style="  list-style-type: none; margin: 0; padding: 0; display:flex;">
                     <li style="margin-left: 30px;"><a href="{{ route('formulaire') }}">Retour d'expérience</a></li>
-                    <li style="margin-left: 30px;"><a href="#">Consultation</a></li>
+                    <li style="margin-left: 30px;"><a href="{{route('consultation')}}">Consultation</a></li>
                     <li style="margin-left: 30px; position: relative;">
                         @if (auth()->user())
                             <a href="#" class="account-link" style="margin-left: 20px; text-transform:capitalize;">Bienvenue {{ auth()->user()->name }}</a>

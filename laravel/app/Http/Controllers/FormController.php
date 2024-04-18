@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\consultation;
 use Illuminate\Http\Request;
 use App\Models\SubmissionForm;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +32,8 @@ class FormController extends Controller
 
     public function showFormSubmissions()
     {
-        if (Auth::user()->is_Admin == 1) {
-            $formSubmissions = SubmissionForm::all();
+        if (Auth::user()->is_admin == 1) {
+            $formSubmissions = SubmissionForm::where('is_published', 0)->get();
             return view('moderation', compact('formSubmissions'));
         } else {
             return redirect()->back()->with('error', 'You are not authorized to access this page.');
@@ -41,7 +42,7 @@ class FormController extends Controller
 
     public function editFormSubmission($id)
     {
-        if (Auth::user()->is_Admin == 1) {
+        if (Auth::user()->is_admin == 1) {
             $formSubmission = SubmissionForm::findOrFail($id);
             return view('edit_infos', compact('formSubmission'));
         } else {
@@ -51,7 +52,7 @@ class FormController extends Controller
 
     public function updateFormSubmission(Request $request, $id)
     {
-        if (Auth::user()->is_Admin == 1) {
+        if (Auth::user()->is_admin == 1) {
             $request->validate([
                 'prenom' => 'required',
                 'titre' => 'required',
@@ -74,4 +75,20 @@ class FormController extends Controller
             return redirect()->back()->with('error', 'You are not authorized to access this page.');
         }
     }
+    public function publishFormSubmission(Request $request, $id)
+{
+    $formSubmission = SubmissionForm::findOrFail($id);
+    $formSubmission->is_published = 1;
+    $formSubmission->save();
+
+    // Refresh the moderation and consultation pages to reflect the change
+    return redirect()->route('form-submissions')->with('success', 'Form submission published successfully.');
+}
+
+public function showConsultationFormSubmissions()
+{
+        $publishedFormSubmissions = SubmissionForm::where('is_published', 1)->get();
+        return view('consultation', compact('publishedFormSubmissions'));
+}
+
 }

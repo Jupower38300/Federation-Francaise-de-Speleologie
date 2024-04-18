@@ -13,7 +13,7 @@
             if (!Auth::guard('web')->check()) {
                 return redirect()->route('/login');
             }
-            if (Auth::user()->is_Admin == 1) {
+            if (Auth::user()->is_admin == 1) {
                 // User is an admin
                 return $next($request);
             } else {

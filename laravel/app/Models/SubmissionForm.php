@@ -9,5 +9,4 @@ class SubmissionForm extends Model
 {
     protected $fillable = ['prenom', 'titre', 'activity', 'site_name', 'message'];
     protected $table = 'experiences';
-
 }

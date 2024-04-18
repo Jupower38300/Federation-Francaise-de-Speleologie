@@ -15,9 +15,13 @@ Route::get('/formulaire', function () {
 Route::post('/formulaire', [FormController::class, 'store'])->name('form.store');
 
 Route::get('/moderation', [FormController::class, 'showFormSubmissions'])->name('form-submissions');
+Route::get('/consultation', [FormController::class, 'showConsultationFormSubmissions'])->name('consultation');
 
 Route::get('/form-submissions/{id}/edit', [FormController::class, 'editFormSubmission'])->name('form.edit');
 Route::put('/form-submissions/{id}', [FormController::class, 'updateFormSubmission'])->name('form.update');
+
+Route::post('/form-submissions/{id}/publish', [FormController::class, 'publishFormSubmission'])->name('form.publish');
+
 
 Route::post('/logout', function () {
     Auth::logout();

@@ -28,6 +28,11 @@
                 <br><br>
                 <div id="bouton">
                     <button id="updateBtn" type="submit">Mettre à jour</button>
+                    <form action="{{ route('form.publish', $formSubmission->id) }}" method="POST">
+                        @csrf
+                        <!-- Other form fields -->
+                        <button type="submit" name="action" value="publish">Publish</button>
+                    </form>
                 </div>
             </form>
         </div>
