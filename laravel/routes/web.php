@@ -15,7 +15,9 @@ Route::get('/retour_dexperience', function () {
 Route::post('/retour_dexperience', [FormController::class, 'store'])->name('form.store');
 
 Route::get('/moderation', [FormController::class, 'showFormSubmissions'])->name('form-submissions');
+
 Route::get('/consultation', [FormController::class, 'showConsultationFormSubmissions'])->name('consultation');
+Route::get('/consultation/{id}', [FormController::class, 'showConsultationDetails'])->name('consultation.show');
 
 Route::get('/moderation/{id}/edit', [FormController::class, 'editFormSubmission'])->name('form.edit');
 Route::put('/moderation/{id}', [FormController::class, 'updateFormSubmission'])->name('form.update');

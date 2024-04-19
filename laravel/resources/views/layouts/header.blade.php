@@ -87,7 +87,9 @@
                         @if (auth()->user())
                             <a href="#" class="account-link" style="margin-left: 20px; text-transform:capitalize;">Bienvenue {{ auth()->user()->name }}</a>
                             <div class="logout-dropdown" style="position: absolute; display: none; padding-top:10px; margin-left:30px;">
+                            @if (auth()->user()->is_admin == 1)
                                 <a href="/moderation" class="modBtn">Modération</a>
+                            @endif
                                 <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                     @csrf
                                     <button type="submit" class="logout-button">Déconnexion</button>

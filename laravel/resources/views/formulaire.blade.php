@@ -87,12 +87,19 @@
                     @enderror
                 </div>
             </div>
+            @if (session('success'))
+             <div class="alert alert-success">
+            {{ session('success') }}
+            @endif
             <br><br>
             <div id="bouton">
                 <button id="resetBtn" type="reset">Réinitialiser</button>
                 <button id="submitBtn" type="submit">Valider</button>
 </div>
         </form>
+
+    </div>
+
     </div>
 @endsection
 
@@ -246,5 +253,10 @@
     .modBtn:hover {
         background-color: #2a8231;
         color: white
+    }
+
+    .alert-success {
+        color:green;
+        margin-top:0px;
     }
 </style>

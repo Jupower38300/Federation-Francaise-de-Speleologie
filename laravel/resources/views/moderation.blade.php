@@ -14,7 +14,7 @@
                 <th>Titre</th>
                 <th>Activité</th>
                 <th>Site</th>
-                <th></th>
+                <th>Actions</th>
                 <th></th>
                 <!-- Add more columns as needed -->
             </tr>

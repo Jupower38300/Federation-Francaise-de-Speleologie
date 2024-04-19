@@ -8,7 +8,7 @@
 <h1>Consultation</h1>
 <div class="card-container">
   @foreach ($publishedFormSubmissions as $submission)
-    <a href="#" class="card">
+    <a href="{{ route('consultation.show', $submission->id) }}" class="card">
       <div class="card-content">
         <p class="date">{{ $submission->submission_date }}</p>
         <h2>{{ $submission->titre }}</h2>

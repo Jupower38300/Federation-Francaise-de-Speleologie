@@ -15,7 +15,7 @@ class FormController extends Controller
             'site_name' => 'required',
             'activity' => 'required',
             'message' => 'required',
-            'date' => 'required|date',
+            'date' => 'required|date|before:today',
             'commune' => 'required',
             'departement' => 'required',
             'description' => 'required',
@@ -24,7 +24,7 @@ class FormController extends Controller
             'humain' => 'required',
         ], [
             'required' => 'Ce champ est requis.',
-            // Add other custom error messages as needed
+            'date.before' => 'La date doit être dans le passé.',
         ]);
 
         SubmissionForm::create([
@@ -42,7 +42,7 @@ class FormController extends Controller
             'humain' => $request->input('humain'),
         ]);
 
-        return redirect()->back()->with('success', 'Form submitted successfully!');
+        return redirect()->back()->with('success', 'Votre retour a été envoyé avec succès!');
     }
 
     public function showFormSubmissions()
@@ -54,6 +54,7 @@ class FormController extends Controller
             return redirect()->back()->with('error', 'You are not authorized to access this page.');
         }
     }
+
 
     public function editFormSubmission($id)
     {
@@ -111,7 +112,7 @@ class FormController extends Controller
     $formSubmission->save();
 
     // Refresh the moderation and consultation pages to reflect the change
-    return redirect()->route('form-submissions')->with('success', 'Form submission published successfully.');
+    return redirect()->route('form-submissions')->with('success', 'Formulaire a été envoyée avec succès.');
 }
 
 public function showConsultationFormSubmissions()
@@ -120,4 +121,14 @@ public function showConsultationFormSubmissions()
         return view('consultation', compact('publishedFormSubmissions'));
 }
 
+public function showConsultationDetails($id)
+{
+    $formSubmission = SubmissionForm::findOrFail($id);
+
+    if ($formSubmission->is_published == 1) {
+        return view('consultation_details', compact('formSubmission'));
+    } else {
+        return redirect()->back()->with('error', "Cette consultation n'est pas encore publiée.");
+    }
+}
 }
