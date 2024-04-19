@@ -19,7 +19,7 @@
         <button type="submit">Connexion</button>
     </div>
     <div class="text">
-        <p>Vous n'avez pas encore de compte? <a href="/register">S'incrire</a></p>
+        <p>Vous n'avez pas encore de compte? <a href="/register" class="a_login">S'incrire</a></p>
     </div>
 </form>
 </div>
@@ -39,6 +39,13 @@
         height: 100vh;
     }
 
+    .a_login {
+        color:black;
+    }
+
+    .a_login:visited {
+        color:black;
+    }
     .content_form {
         background-color: #fff;
         padding: 20px;

@@ -27,7 +27,7 @@
         <button type="submit">S'inscrire</button>
     </div>
     <div class="text">
-        <p>Vous avez déjà un compte? <a href="/login">Se connecter</a></p>
+        <p>Vous avez déjà un compte? <a href="/login" class="a_login">Se connecter</a></p>
     </div>
 </form>
 </div>
@@ -47,6 +47,14 @@
         height: 100vh;
     }
 
+
+    .a_login {
+        color:black;
+    }
+
+    .a_login:visited {
+        color:black;
+    }
     .content_form {
         background-color: #fff;
         padding: 20px;

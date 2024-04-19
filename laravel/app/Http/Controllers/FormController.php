@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\consultation;
 use Illuminate\Http\Request;
 use App\Models\SubmissionForm;
 use Illuminate\Support\Facades\Auth;
-
 class FormController extends Controller
 {
     public function store(Request $request)
@@ -17,6 +15,16 @@ class FormController extends Controller
             'site_name' => 'required',
             'activity' => 'required',
             'message' => 'required',
+            'date' => 'required|date',
+            'commune' => 'required',
+            'departement' => 'required',
+            'description' => 'required',
+            'analyse' => 'required',
+            'materiel' => 'required',
+            'humain' => 'required',
+        ], [
+            'required' => 'Ce champ est requis.',
+            // Add other custom error messages as needed
         ]);
 
         SubmissionForm::create([
@@ -25,6 +33,13 @@ class FormController extends Controller
             'site_name' => $request->input('site_name'),
             'activity' => $request->input('activity'),
             'message' => $request->input('message'),
+            'date' => $request->input('date'),
+            'commune' => $request->input('commune'),
+            'departement' => $request->input('departement'),
+            'description' => $request->input('description'),
+            'analyse' => $request->input('analyse'),
+            'materiel' => $request->input('materiel'),
+            'humain' => $request->input('humain'),
         ]);
 
         return redirect()->back()->with('success', 'Form submitted successfully!');
@@ -52,29 +67,43 @@ class FormController extends Controller
 
     public function updateFormSubmission(Request $request, $id)
     {
-        if (Auth::user()->is_admin == 1) {
-            $request->validate([
-                'prenom' => 'required',
-                'titre' => 'required',
-                'site_name' => 'required',
-                'activity' => 'required',
-                'message' => 'required',
-            ]);
-
-            $formSubmission = SubmissionForm::findOrFail($id);
-            $formSubmission->update([
-                'prenom' => $request->input('prenom'),
-                'titre' => $request->input('titre'),
-                'site_name' => $request->input('site_name'),
-                'activity' => $request->input('activity'),
-                'message' => $request->input('message'),
-            ]);
-
-            return redirect()->route('form-submissions')->with('success', 'Form submission updated successfully!');
-        } else {
-            return redirect()->back()->with('error', 'You are not authorized to access this page.');
+            if (Auth::user()->is_admin == 1) {
+                $request->validate([
+                    'prenom' => 'required',
+                    'titre' => 'required',
+                    'site_name' => 'required',
+                    'activity' => 'required',
+                    'message' => 'required',
+                    'date' => 'required|date',
+                    'commune' => 'required',
+                    'departement' => 'required',
+                    'description' => 'required',
+                    'analyse' => 'required',
+                    'materiel' => 'required',
+                    'humain' => 'required',
+                ]);
+        
+                $formSubmission = SubmissionForm::findOrFail($id);
+                $formSubmission->update([
+                    'prenom' => $request->input('prenom'),
+                    'titre' => $request->input('titre'),
+                    'site_name' => $request->input('site_name'),
+                    'activity' => $request->input('activity'),
+                    'message' => $request->input('message'),
+                    'date' => $request->input('date'),
+                    'commune' => $request->input('commune'),
+                    'departement' => $request->input('departement'),
+                    'description' => $request->input('description'),
+                    'analyse' => $request->input('analyse'),
+                    'materiel' => $request->input('materiel'),
+                    'humain' => $request->input('humain'),
+                ]);
+        
+                return redirect()->route('form-submissions')->with('success', 'Form submission updated successfully!');
+            } else {
+                return redirect()->back()->with('error', 'You are not authorized to access this page.');
+            }
         }
-    }
     public function publishFormSubmission(Request $request, $id)
 {
     $formSubmission = SubmissionForm::findOrFail($id);

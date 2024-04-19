@@ -3,8 +3,10 @@
 @section("title", "Page modération")
 
 @section("content")
+
 <div class="Texts">
-    <table>
+    <h1>Espace Modération</h1>
+    <table class="styled-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -12,6 +14,8 @@
                 <th>Titre</th>
                 <th>Activité</th>
                 <th>Site</th>
+                <th></th>
+                <th></th>
                 <!-- Add more columns as needed -->
             </tr>
         </thead>
@@ -27,10 +31,10 @@
                     <a href="{{ route('form.edit', $submission->id) }}">Modifier</a>
                 </td>
                 <td scope="btn_edit">
-                <form action="{{ route('form.publish', $submission->id) }}" method="POST">
-                    @csrf
-                    <button type="submit">Publish</button>
-                </form>
+                    <form action="{{ route('form.publish', $submission->id) }}" method="POST">
+                        @csrf
+                        <button class="button" type="submit">Publier</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -40,9 +44,8 @@
     <style>
             body {
         font-family: Arial, sans-serif;
-        background: rgb(131, 58, 180);
-        background: linear-gradient(0deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 0.5454545454545454) 50%, rgba(252, 176, 69, 0.572192513368984) 100%);
-        backdrop-filter: blur(10px);
+        background-image:url("https://www.canyon-besorgues.com/activite-nature-ardeche/uploads/2021/01/speleo_famille-e1610108224921.jpg");
+        backdrop-filter: blur(2px);
         margin: 0;
         padding: 0;
         display: flex;
@@ -55,6 +58,15 @@
         font-size: 150%;
     }
 
+    h1 {
+        text-decoration: underline;
+    }
+    main {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100%;
+    }
     .Texts {
         display: flex;
         flex-direction: column;
@@ -68,10 +80,11 @@
         text-align: center;
     }
 
+
+    
     td {
         border: 1px solid rgb(160 160 160);
-        padding: 8px 10px;
-        border-radius: 10px;
+        padding: 8px 20px;
     }
 
     td[scope="btn"] {
@@ -115,20 +128,71 @@
         text-decoration: none;
         transition: background-color 0.3s;
     }
-
+    td a:visited {
+        color: black;
+    }
     td a:hover {
-        background-color: #9e87dc;
+        background-color: #2a8231;
         color: white
     }
 
+
+
     th {
-        background-color: rgba(120, 106, 219, 1);
+        background-color:#262626;
         color: #fff;
     }
 
     td[scope='ID'] {
         background-color: rgba(255, 194, 255, 0.5);
     }
+    .button {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-weight: bold;
+    }
 
+    .button:hover {
+        background-color: #2a8231;
+        color: white
+    }
+
+
+    .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th, .styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
     </style>
 @endsection

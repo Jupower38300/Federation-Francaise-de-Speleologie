@@ -4,38 +4,30 @@
 @section("title", "Consultation")
 
 @section("content")
-<div class="Texts">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Titre</th>
-                <th>Activité</th>
-                <th>Site</th>
-                <!-- Add more columns as needed -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($publishedFormSubmissions as $submission)
-            <tr>
-                <td>{{ $submission->id }}</td>
-                <td>{{ $submission->submission_date }}</td>
-                <td>{{ $submission->titre }}</td>
-                <td>{{ $submission->activity }}</td>
-                <td>{{ $submission->site_name }}</td>
 
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    </div>
+<h1>Consultation</h1>
+<div class="card-container">
+  @foreach ($publishedFormSubmissions as $submission)
+    <a href="#" class="card">
+      <div class="card-content">
+        <p class="date">{{ $submission->submission_date }}</p>
+        <h2>{{ $submission->titre }}</h2>
+        <p class="activity">{{ $submission->activity }}</p>
+        <p class="site-name">{{ $submission->site_name }}</p>
+        <p>{{ $submission->message }}</p>
+        <p>{{ $submission->description }}</p>
+      </div>
+    </a>
+  @endforeach
+</div>
+
+
     <style>
             body {
         font-family: Arial, sans-serif;
-        background: rgb(131, 58, 180);
-        background: linear-gradient(0deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 0.5454545454545454) 50%, rgba(252, 176, 69, 0.572192513368984) 100%);
-        backdrop-filter: blur(10px);
+        background-image:url("https://ffspeleo.fr/csx/scripts/resizer.php?filename=SLIDES%2Fmedia%2F3a%2Fc7%2Fddt5sl06yhfv&mime=image%252Fjpeg&originalname=bandeau-slider-01.jpg&geometry=2100x920%5E&gravity=Center&crop=2100x920%2B0%2B0");
+        backdrop-filter: blur(2px);
+        background-size: cover;
         margin: 0;
         padding: 0;
         display: flex;
@@ -44,84 +36,77 @@
         height: 100vh;
     }
 
-    .name {
-        font-size: 150%;
-    }
-
-    .Texts {
-        display: flex;
-        flex-direction: column;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 80%;
-        justify-content: center;
+    main {
+        display:flex;
+        justify-content:center;
         align-items:center;
-        text-align: center;
+        height:100%;
+        flex-direction:column;
     }
 
-    td {
-        border: 1px solid rgb(160 160 160);
-        padding: 8px 10px;
-        border-radius: 10px;
+    h1 {
+        font-size:30px;
+        text-decoration:underline;
+        margin-bottom:20px;
+        color:white;
     }
+    .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
 
-    td[scope="btn"] {
-        background-color: #d91919;
-        text-align:center;
-    }
+  .card {
+    width: 250px;
+    display:flex;
+    height:300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    align-items:center;
+  }
 
-    td[scope="btn"] button {
-        background-color: transparent;
-        border: 0px solid;
-        padding: 8px 10px;
-        border-radius: 10px;
-        color: white;
-        font-weight: bold;
-        font-size: 15px;
-        text-align:center;
-    }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
 
-    td[scope="btn_edit"]{
-        background-color: transparent;
-        border: 0px solid;
-        padding: 8px 10px;
-        border-radius: 10px;
-        color: white;
-        font-weight: bold;
-        font-size: 15px;
-        text-align:center;
-    }
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
 
-    td a{
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        max-width:50%;
-        color:black;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
+  .card-content {
+    padding: 20px;
+  }
 
-    td a:hover {
-        background-color: #9e87dc;
-        color: white
-    }
+  .card-content h2 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color:black;
+  }
 
-    th {
-        background-color: rgba(120, 106, 219, 1);
-        color: #fff;
-    }
+  .card-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+  }
 
-    td[scope='ID'] {
-        background-color: rgba(255, 194, 255, 0.5);
-    }
+  .card-content p.date {
+    color: #999;
+    font-size: 12px;
+  }
 
+  .card-content p.activity,
+  .card-content p.site-name {
+    display: inline-block;
+    margin-right: 10px;
+  }
     </style>
 @endsection
