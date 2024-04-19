@@ -47,72 +47,84 @@ class FormController extends Controller
 
     public function showFormSubmissions()
     {
-        if (Auth::user()->is_admin == 1) {
-            $formSubmissions = SubmissionForm::where('is_published', 0)->get();
-            return view('moderation', compact('formSubmissions'));
+        if (Auth::user()) {
+            if (Auth::user()->is_admin == 1) {
+                $formSubmissions = SubmissionForm::where('is_published', 0)->get();
+                return view('moderation', compact('formSubmissions'));
+            } else {
+                return redirect()->back()->with('error', 'You are not authorized to access this page.');
+            }
         } else {
-            return redirect()->back()->with('error', 'You are not authorized to access this page.');
+            return redirect()->route('login')->with('error', 'You are not authorized to access this page.');
         }
     }
 
 
     public function editFormSubmission($id)
     {
-        if (Auth::user()->is_admin == 1) {
-            $formSubmission = SubmissionForm::findOrFail($id);
-            return view('edit_infos', compact('formSubmission'));
-        } else {
-            return redirect()->back()->with('error', 'You are not authorized to access this page.');
-        }
+        if (Auth::user()) {
+            if (Auth::user()->is_admin == 1) {
+                $formSubmission = SubmissionForm::findOrFail($id);
+                return view('edit_infos', compact('formSubmission'));
+            } else {
+                return redirect()->back()->with('error', 'You are not authorized to access this page.');
+            }
+        }     
     }
 
     public function updateFormSubmission(Request $request, $id)
     {
-            if (Auth::user()->is_admin == 1) {
-                $request->validate([
-                    'prenom' => 'required',
-                    'titre' => 'required',
-                    'site_name' => 'required',
-                    'activity' => 'required',
-                    'message' => 'required',
-                    'date' => 'required|date',
-                    'commune' => 'required',
-                    'departement' => 'required',
-                    'description' => 'required',
-                    'analyse' => 'required',
-                    'materiel' => 'required',
-                    'humain' => 'required',
-                ]);
-        
-                $formSubmission = SubmissionForm::findOrFail($id);
-                $formSubmission->update([
-                    'prenom' => $request->input('prenom'),
-                    'titre' => $request->input('titre'),
-                    'site_name' => $request->input('site_name'),
-                    'activity' => $request->input('activity'),
-                    'message' => $request->input('message'),
-                    'date' => $request->input('date'),
-                    'commune' => $request->input('commune'),
-                    'departement' => $request->input('departement'),
-                    'description' => $request->input('description'),
-                    'analyse' => $request->input('analyse'),
-                    'materiel' => $request->input('materiel'),
-                    'humain' => $request->input('humain'),
-                ]);
-        
-                return redirect()->route('form-submissions')->with('success', 'Form submission updated successfully!');
-            } else {
-                return redirect()->back()->with('error', 'You are not authorized to access this page.');
+        if (Auth::user()) {
+                if (Auth::user()->is_admin == 1) {
+                    $request->validate([
+                        'prenom' => 'required',
+                        'titre' => 'required',
+                        'site_name' => 'required',
+                        'activity' => 'required',
+                        'message' => 'required',
+                        'date' => 'required|date',
+                        'commune' => 'required',
+                        'departement' => 'required',
+                        'description' => 'required',
+                        'analyse' => 'required',
+                        'materiel' => 'required',
+                        'humain' => 'required',
+                    ]);
+            
+                    $formSubmission = SubmissionForm::findOrFail($id);
+                    $formSubmission->update([
+                        'prenom' => $request->input('prenom'),
+                        'titre' => $request->input('titre'),
+                        'site_name' => $request->input('site_name'),
+                        'activity' => $request->input('activity'),
+                        'message' => $request->input('message'),
+                        'date' => $request->input('date'),
+                        'commune' => $request->input('commune'),
+                        'departement' => $request->input('departement'),
+                        'description' => $request->input('description'),
+                        'analyse' => $request->input('analyse'),
+                        'materiel' => $request->input('materiel'),
+                        'humain' => $request->input('humain'),
+                    ]);
+            
+                    return redirect()->route('form-submissions')->with('success', 'Form submission updated successfully!');
+                } else {
+                    return redirect()->back()->with('error', 'You are not authorized to access this page.');
+                }
             }
         }
-    public function publishFormSubmission(Request $request, $id)
+    public function publishFormSubmission($id)
 {
-    $formSubmission = SubmissionForm::findOrFail($id);
-    $formSubmission->is_published = 1;
-    $formSubmission->save();
+    if (Auth::user()) {
+        if (Auth::user()->is_admin == 1) {
+            $formSubmission = SubmissionForm::findOrFail($id);
+            $formSubmission->is_published = 1;
+            $formSubmission->save();
 
-    // Refresh the moderation and consultation pages to reflect the change
-    return redirect()->route('form-submissions')->with('success', 'Formulaire a été envoyée avec succès.');
+            // Refresh the moderation and consultation pages to reflect the change
+            return redirect()->route('form-submissions')->with('success', 'Formulaire a été envoyée avec succès.');
+        }
+    }
 }
 
 public function showConsultationFormSubmissions()

@@ -96,7 +96,7 @@
                                 </form>
                             </div>
                         @else
-                            <div><a href="login" id="connection">Espace Modérateur</a></div>
+                            <div><a href="register" id="connection">Créer un compte</a></div>
                         @endif
                     </li>
                 </ul>
