@@ -22,7 +22,7 @@
         <div class="card">
             <h2>Espace Modérateur</h2>
             <p>Pour accéder à cette page, vous devez avoir un compte administrateur de ce site.</p>
-            <a href="login" class="a_card">Espace modérateur</a>
+            <a href="{{route('form-submissions')}}" class="a_card">Espace modérateur</a>
         </div>
     </div>
 

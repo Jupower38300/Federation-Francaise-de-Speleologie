@@ -5,7 +5,7 @@
 @section("content")
 
 <div class="consultation-details">
-    <h1>Consultation Details</h1>
+    <h1>Détails de la consutation</h1>
 
     <div class="details-container">
         <div class="detail-item">

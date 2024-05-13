@@ -107,7 +107,7 @@ class FormController extends Controller
                         'humain' => $request->input('humain'),
                     ]);
             
-                    return redirect()->route('form-submissions')->with('success', 'Form submission updated successfully!');
+                    return redirect()->route('form-submissions')->with('success', 'Le retour a été modifié avec succès!');
                 } else {
                     return redirect()->back()->with('error', 'You are not authorized to access this page.');
                 }
@@ -122,7 +122,7 @@ class FormController extends Controller
             $formSubmission->save();
 
             // Refresh the moderation and consultation pages to reflect the change
-            return redirect()->route('form-submissions')->with('success', 'Formulaire a été envoyée avec succès.');
+            return redirect()->route('form-submissions')->with('success', 'Le retour a été publié avec succès.');
         }
     }
 }

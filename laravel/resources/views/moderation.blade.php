@@ -6,6 +6,11 @@
 
 <div class="Texts">
     <h1>Espace Modération</h1>
+
+            @if (session('success'))
+             <div class="alert-success">
+                {{ session('success') }}
+            @endif
     <table class="styled-table">
         <thead>
             <tr>
@@ -194,5 +199,14 @@
 .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
+
+.alert-success {
+        color:green;
+        margin-top:0px;
+    }
+
+    td {
+        color:black;
+    }
     </style>
 @endsection
